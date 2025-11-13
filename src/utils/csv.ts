@@ -5,8 +5,6 @@ export function parseCsv(text: string): Array<Record<string, string>> {
     .filter((l) => l.length > 0);
   const headers = csvRow[0].split(",");
 
-  console.log(headers);
-
   const parseCsvRows = [];
 
   for (let i = 0; i < csvRow.length; i++) {
