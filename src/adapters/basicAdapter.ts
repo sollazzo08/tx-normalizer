@@ -7,7 +7,7 @@ function mapRowtoRaw(row: Record<string,string>): RawTransaction {
   return {
     date: row['Date'],
     transactionType: row['Type'] as "DEBIT" | "DEP" | "CREDIT",
-    amount: parseFloat(row['Amount']),
+    amount: row['Amount'],
     description: row['Description']
   }
 }
