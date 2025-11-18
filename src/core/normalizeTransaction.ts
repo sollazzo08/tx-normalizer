@@ -1,10 +1,15 @@
-import { NormalizedTransaction,RawTransaction } from "../types";
+import {
+  NormalizedTransaction,
+  NormalizedError,
+  RawTransaction,
+} from "../types";
 import { parseToIsoDate } from "../utils/parseDate";
 import crypto from "crypto";
 
-
-export function normalizeTransaction(rawTransaction: RawTransaction, source: string): NormalizedTransaction {
-
+function normalizeTransaction(
+  rawTransaction: RawTransaction,
+  source: string,
+): NormalizedTransaction {
   const normalizedDate = parseToIsoDate(rawTransaction.date);
   const normalizedAmount = parseFloat(rawTransaction.amount || "0");
 
@@ -16,17 +21,42 @@ export function normalizeTransaction(rawTransaction: RawTransaction, source: str
     direction: rawTransaction.direction,
     rawDescription: rawTransaction.description,
     categoryId: undefined, //TODO need a way to categorize each transaction
-    source: source
-
-  }
-
+    source: source,
+  };
 
   return result;
 }
 
-// export function normalizeTransactions(normalizedTransaction: NormalizedTransaction, source: string): Array<NormalizedTransaction> {
+export function normalizeTransactions(
+  listOfRawTransactions: Array<RawTransaction>,
+  source: string,
+): {
+  normalized: Array<NormalizedTransaction>;
+  errors: Array<NormalizedError>;
+} {
+  const normalized = [];
+  const errors = [];
 
+  for (let i = 0; i < listOfRawTransactions.length; i++) {
+    try {
+      const rowItem = normalizeTransaction(listOfRawTransactions[i], source);
+      normalized.push(rowItem);
+    } catch (error) {
+      let message = "Unknown error";
 
+      if (error instanceof Error) {
+        message = error.message;
+      } else if (typeof error === "string") {
+        message = error;
+      } else {
+        message = JSON.stringify(error);
+      }
+      errors.push({
+        rowIndex: i,
+        message: message,
+      });
+    }
+  }
 
-//   return null;
-// }
+  return { normalized, errors };
+}

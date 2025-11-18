@@ -23,3 +23,8 @@ export const NormalizedTransactionSchema = z.object({
 });
 
 export type NormalizedTransaction = z.infer<typeof NormalizedTransactionSchema>;
+
+export type NormalizedError = {
+  rowIndex: number,
+  message: string
+}
