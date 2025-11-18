@@ -1,20 +1,7 @@
-import { rawTransactionsFromCsv } from "../src/adapters/td";
-import { normalizeTransactions } from "../src/core/normalizeTransaction";
+import {importTdCsvFromFile} from "../src/adapters/td";
 
-const csv = `
 
-Date,Type,Amount,Description
-2025-01-01,DEBIT,,AMAZON
+const data = importTdCsvFromFile("examples/data/transactions.csv");
 
-2025-01-02,DEP,1200.00,PAYROLL
 
-`;
-
-const mappedRawTransaction = rawTransactionsFromCsv(csv);
-console.log("Mapped Raw Transactions:", mappedRawTransaction);
-
-const normalizedTransaction = normalizeTransactions(
-  mappedRawTransaction,
-  "td.csv",
-);
-console.log("Normalized Transaction: ", normalizedTransaction);
+console.log("Normalized Transaction: ", data);

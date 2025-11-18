@@ -17,7 +17,7 @@ function normalizeTransaction(
     id: crypto.randomUUID(),
     date: normalizedDate,
     amount: normalizedAmount,
-    merchantName: rawTransaction.description.trim(),
+    merchantName: rawTransaction.merchant,
     direction: rawTransaction.direction,
     rawDescription: rawTransaction.description,
     categoryId: undefined, //TODO need a way to categorize each transaction

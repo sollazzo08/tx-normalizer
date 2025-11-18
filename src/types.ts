@@ -4,6 +4,7 @@ export const RawTransactionSchema = z.object({
   date: z.string(),
   direction: z.enum(["debit", "credit"]),
   amount: z.string(),
+  merchant: z.string().nullable,
   description: z.string()
 });
 
@@ -14,7 +15,7 @@ export const NormalizedTransactionSchema = z.object({
   date: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Expected YYYY-MM-DD"),
-  merchantName: z.string(),
+  merchantName: z.string().nullable,
   direction: z.string(),
   amount: z.number(),
   rawDescription: z.string(),
