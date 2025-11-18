@@ -24,6 +24,7 @@
     "typescript-eslint": "^8.46.4"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
     "date-fns": "^4.1.0",
     "zod": "^4.1.12"
   }

@@ -1,4 +1,5 @@
-import {rawTransactionsFromCsv} from "../src/adapters/basicAdapter";
+import { rawTransactionsFromCsv } from "../src/adapters/td";
+import { normalizeTransaction } from "../src/core/normalizeTransaction";
 
 const csv = `
 
@@ -9,6 +10,11 @@ Date,Type,Amount,Description
 
 `;
 
-
 const mappedRawTransaction = rawTransactionsFromCsv(csv);
 console.log("Mapped Raw Transactions:", mappedRawTransaction);
+
+const normalizedTransaction = normalizeTransaction(
+  mappedRawTransaction[1],
+  "td.csv",
+);
+console.log("Normalized Transaction: ", normalizedTransaction);

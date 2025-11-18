@@ -1,20 +1,21 @@
 import { NormalizedTransaction,RawTransaction } from "../types";
 import { parseToIsoDate } from "../utils/parseDate";
+import crypto from "crypto";
 
 
 export function normalizeTransaction(rawTransaction: RawTransaction, source: string): NormalizedTransaction {
 
   const normalizedDate = parseToIsoDate(rawTransaction.date);
-  const amount = parseFloat(rawTransaction.amount || "0");
+  const normalizedAmount = parseFloat(rawTransaction.amount || "0");
 
   const result = {
-    id: "124",
+    id: crypto.randomUUID(),
     date: normalizedDate,
-    amount: amount,
-    merchantName: "test",
-    direction: "credit",
+    amount: normalizedAmount,
+    merchantName: rawTransaction.description.trim(),
+    direction: rawTransaction.direction,
     rawDescription: rawTransaction.description,
-    categoryId: "test",
+    categoryId: undefined, //TODO need a way to categorize each transaction
     source: source
 
   }
@@ -23,9 +24,9 @@ export function normalizeTransaction(rawTransaction: RawTransaction, source: str
   return result;
 }
 
-export function normalizeTransactions(normalizedTransaction: NormalizedTransaction, source: string): Array<NormalizedTransaction> {
+// export function normalizeTransactions(normalizedTransaction: NormalizedTransaction, source: string): Array<NormalizedTransaction> {
 
 
 
-  return null;
-}
+//   return null;
+// }

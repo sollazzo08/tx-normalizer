@@ -2,7 +2,7 @@ import * as z from "zod";
 
 export const RawTransactionSchema = z.object({
   date: z.string(),
-  transactionType: z.enum(["DEBIT","CREDIT", "DEP"]),
+  direction: z.enum(["debit", "credit"]),
   amount: z.string(),
   description: z.string()
 });
