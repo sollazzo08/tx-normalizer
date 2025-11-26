@@ -1,7 +1,7 @@
 import { RawTransaction } from "../types";
 import { normalizeTransactions } from "../core/normalizeTransaction";
 import { parseCsv } from "../utils/csv";
-// import fs from "fs";
+import fs from "fs";
 
 function extractMerchant(rawDescription: string): string | undefined {
   const normalized = rawDescription.trim().replace(/\s+/g, " ");
