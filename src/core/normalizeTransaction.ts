@@ -4,6 +4,7 @@ import {
   RawTransaction,
 } from "../types";
 import { parseToIsoDate } from "../utils/parseDate";
+import { parseAmount } from "../utils/parseAmount";
 
 // Browser + Node-safe ID generator
 function generateId(): string {
@@ -29,7 +30,7 @@ function normalizeTransaction(
   source: string,
 ): NormalizedTransaction {
   const normalizedDate = parseToIsoDate(rawTransaction.date);
-  const normalizedAmount = parseFloat(rawTransaction.amount || "0");
+  const normalizedAmount = parseAmount(rawTransaction.amount, rawTransaction.direction);
 
   const result: NormalizedTransaction = {
     id: generateId(),
