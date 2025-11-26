@@ -1,16 +1,37 @@
 {
   "name": "tx-normalizer",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "Normalize messy bank CSV exports into structured transaction data.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "start": "ts-node examples/run-example.ts",
     "lint": "eslint . --ext .ts,.mts,.cts --max-warnings=0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Michael Sollazzo",
   "license": "ISC",
+  "keywords": [
+    "csv",
+    "bank",
+    "transactions",
+    "normalizer",
+    "finance",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sollazzo08/tx-normalizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sollazzo08/tx-normalizer/issues"
+  },
+  "homepage": "https://github.com/sollazzo08/tx-normalizer#readme",
   "devDependencies": {
     "@types/node": "^24.10.0",
     "@typescript-eslint/eslint-plugin": "^8.46.4",
@@ -24,9 +45,7 @@
     "typescript-eslint": "^8.46.4"
   },
   "dependencies": {
-    "crypto": "^1.0.1",
     "date-fns": "^4.1.0",
-    "fs": "^0.0.1-security",
     "zod": "^4.1.12"
   }
 }
