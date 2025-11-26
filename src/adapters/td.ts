@@ -1,7 +1,7 @@
 import { RawTransaction } from "../types";
 import { normalizeTransactions } from "../core/normalizeTransaction";
 import { parseCsv } from "../utils/csv";
-import fs from "fs";
+// import fs from "fs";
 
 function extractMerchant(rawDescription: string): string | undefined {
   const normalized = rawDescription.trim().replace(/\s+/g, " ");
@@ -84,7 +84,7 @@ export function importTdCsv(csvString: string) {
   return normalizeTransactions(rawTransactions, "TD Bank");
 }
 
-export function importTdCsvFromFile(filePath: string) {
-  const csvString = fs.readFileSync(filePath, "utf-8");
-  return importTdCsv(csvString);
-}
+// export function importTdCsvFromFile(filePath: string) {
+//   const csvString = fs.readFileSync(filePath, "utf-8");
+//   return importTdCsv(csvString);
+// }
