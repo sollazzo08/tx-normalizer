@@ -60,7 +60,7 @@ function mapDirection(rawDirection: string): "debit" | "credit" {
 function mapRowtoRaw(row: Record<string, string>): RawTransaction {
   return {
     date: row["Date"],
-    direction: mapDirection(row["Type"]),
+    direction: mapDirection(row["Transaction Type"]),
     amount: row["Debit"] || row["Credit"],
     merchant: extractMerchant(row["Description"]),
     description: row["Description"],
